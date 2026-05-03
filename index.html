@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Ujjawal Gupta | DevOps Engineer Portfolio</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 12px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navbar {
+            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.88);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-weight: 800;
+            font-size: 1.75rem;
+            background: linear-gradient(135deg, #1e293b, #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e293b;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 3rem 0;
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        .hero-content {
+            flex: 1;
+        }
+        .hero-badge {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2563eb;
+            background: #dbeafe;
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+        }
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #0f172a, #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero-tagline {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #334155;
+        }
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #475569;
+            max-width: 550px;
+            margin-bottom: 2rem;
+        }
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 8px 14px -6px rgba(37,99,235,0.3);
+        }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-3px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #2563eb;
+            color: #2563eb;
+            padding: 0.85rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-outline:hover {
+            background: #2563eb10;
+            transform: translateY(-3px);
+        }
+        .hero-avatar {
+            flex: 0.8;
+            text-align: center;
+        }
+        .avatar-icon {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.2);
+            border: 3px solid white;
+            background: linear-gradient(145deg, #eef2ff, #ffffff);
+        }
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: #2563eb;
+            border-radius: 4px;
+        }
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+        .skill-category {
+            flex: 1;
+            min-width: 220px;
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            box-shadow: 0 12px 30px -10px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        .skill-category:hover {
+            transform: translateY(-6px);
+        }
+        .skill-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+            border-left: 4px solid #2563eb;
+            padding-left: 12px;
+        }
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .skill-badge {
+            background: #eef2ff;
+            color: #1e40af;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        .exp-card, .project-card {
+            background: white;
+            border-radius: 28px;
+            padding: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: 0.25s;
+            border: 1px solid #eef2ff;
+        }
+        .exp-card:hover, .project-card:hover {
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+            transform: scale(1.01);
+        }
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .exp-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .exp-company {
+            color: #2563eb;
+            font-weight: 600;
+        }
+        .exp-date {
+            color: #64748b;
+            font-weight: 500;
+        }
+        .exp-desc {
+            margin-top: 0.8rem;
+            color: #334155;
+            padding-left: 0.5rem;
+            border-left: 3px solid #e2e8f0;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card i {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 0.8rem;
+        }
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: white;
+            border-radius: 32px;
+            padding: 2rem;
+            justify-content: space-between;
+        }
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1rem;
+        }
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: #eef2ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            color: #2563eb;
+        }
+        .social-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+        .social-links a {
+            font-size: 1.8rem;
+            color: #334155;
+            transition: 0.2s;
+        }
+        .social-links a:hover {
+            color: #2563eb;
+            transform: translateY(-4px);
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+            color: #475569;
+        }
+        @media (max-width: 800px) {
+            .hero-grid {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+            .hero-tagline {
+                font-size: 1.3rem;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .nav-links {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .avatar-icon {
+                width: 200px;
+                height: 200px;
+            }
+            .section-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .section-title {
+                text-align: center;
+                display: block;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .contact-item {
+                justify-content: center;
+            }
+        }
+        .current-work {
+            background: linear-gradient(110deg, #eef2ff, #ffffff);
+            border-radius: 40px;
+            padding: 2rem;
+            margin: 2rem 0 1rem;
+            border: 1px solid #cbd5e1;
+        }
+        .current-work h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .current-work ul {
+            margin-left: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .blinking-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.8s infinite;
+            margin-right: 8px;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(0.8); background-color: #10b981;}
+            100% { opacity: 1; transform: scale(1.2); background-color: #3b82f6;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="container nav-container">
+        <div class="logo">UJJAWAL GUPTA</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</div>
+
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-terminal"></i> DevOps Engineer</div>
+                <h1>Hi, I’m Ujjawal Gupta</h1>
+                <div class="hero-tagline">DevOps Engineer | Linux | Cloud | Automation</div>
+                <p class="hero-desc">I specialize in managing Linux-based production systems, automating workflows, and ensuring high availability of enterprise infrastructure. With hands-on experience in real-world telecom environments, I focus on building reliable, scalable, and secure systems.</p>
+                <div class="btn-group">
+                    <a href="#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Contact Me</a>
+                    <a href="#projects" class="btn-outline"><i class="fab fa-github"></i> View Projects</a>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <div class="avatar-icon">
+                    <img src="Profile_Pic.png" alt="Ujjawal Gupta" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?background=2563eb&color=fff&rounded=true&bold=true&size=120&name=Ujjawal+Gupta';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div style="background: white; border-radius: 32px; padding: 2rem; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.05);">
+                <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 1rem;">I’m a DevOps / Cloud Engineer with 1.5+ years of experience in Linux system administration and production support. Currently working at Accenture, I handle critical infrastructure for Vodafone Germany.</p>
+                <p style="font-size: 1.1rem; line-height: 1.6;">My expertise includes system hardening, incident management, performance monitoring, and working in ITIL-driven environments. I’m continuously learning cloud and DevOps tools to move towards fully automated and scalable infrastructure solutions.</p>
+                <div style="margin-top: 1.5rem; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <span class="skill-badge"><i class="fas fa-check-circle"></i> Linux RHEL</span>
+                    <span class="skill-badge"><i class="fas fa-shield-alt"></i> System Hardening</span>
+                    <span class="skill-badge"><i class="fas fa-chart-line"></i> Performance Monitoring</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Arsenal</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-server"></i> Core Skills</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Linux (RHEL) Admin</span>
+                        <span class="skill-badge">Incident Management</span>
+                        <span class="skill-badge">System Hardening</span>
+                        <span class="skill-badge">Performance Monitoring</span>
+                        <span class="skill-badge">ITIL Processes</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code-branch"></i> DevOps Tools</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Git & GitHub</span>
+                        <span class="skill-badge">Docker</span>
+                        <span class="skill-badge">Jenkins (CI/CD)</span>
+                        <span class="skill-badge">Ansible (Beginner)</span>
+                        <span class="skill-badge">Kubernetes (Beginner)</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Cloud & Others</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">AWS (Learning)</span>
+                        <span class="skill-badge">MySQL</span>
+                        <span class="skill-badge">Talend (ETL)</span>
+                        <span class="skill-badge">Java, HTML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="timeline">
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <span class="exp-title">Cloud Engineer</span>
+                        <span class="exp-date">Feb 2025 – Present</span>
+                    </div>
+                    <div class="exp-company">Accenture • Gurugram</div>
+                    <div class="exp-desc">
+                        <ul style="margin-left: 1.2rem; margin-top: 0.6rem;">
+                            <li>Managing Linux production servers (RHEL) for Vodafone Germany infrastructure</li>
+                            <li>Handling incidents, patching, monitoring and system hardening</li>
+                            <li>Access management & following ITIL processes for stability & security</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <span class="exp-title">Linux Engineer</span>
+                        <span class="exp-date">Mar 2024 – Feb 2025</span>
+                    </div>
+                    <div class="exp-company">Progressive Infovision • Gurgaon</div>
+                    <div class="exp-desc">
+                        <ul style="margin-left: 1.2rem; margin-top: 0.6rem;">
+                            <li>Managed infrastructure for Bharti Airtel, resolved OS-level issues & incidents</li>
+                            <li>Ensured high uptime and smooth server operations, performance tuning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <i class="fas fa-database"></i>
+                    <h3>BVAS (Airtel Project)</h3>
+                    <p>Managed Linux servers, filesystem, user access & monitored performance. Resolved critical issues ensuring 99.9% stability in production environment.</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>CI/CD Automation Pipeline</h3>
+                    <p>Built end-to-end pipeline using Jenkins, automated build, test, and deployment processes. Reduced release cycle time by 30% and improved developer velocity.</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Cloud Infrastructure Lab</h3>
+                    <p>Hands-on AWS (EC2, S3) + Docker containerization. Currently expanding Kubernetes & Ansible for auto-scaling deployments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Current work combined -->
+    <div class="container">
+        <div class="current-work">
+            <h3><span class="blinking-dot"></span> What I’m Currently Working On</h3>
+            <ul>
+                <li><i class="fas fa-arrow-right" style="color:#2563eb;"></i> Improving AWS & Cloud skills (Solutions Architect track)</li>
+                <li><i class="fas fa-arrow-right" style="color:#2563eb;"></i> Learning Kubernetes & Ansible deeply – building automated DevOps projects</li>
+                <li><i class="fas fa-arrow-right" style="color:#2563eb;"></i> Building automation-focused DevOps projects (CI/CD with monitoring stack)</li>
+            </ul>
+        </div>
+        <div style="background: white; border-radius: 32px; padding: 1.8rem; margin: 1rem 0 2rem;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 0.8rem;"><i class="fas fa-graduation-cap"></i> Education</h3>
+            <p><strong>B.Tech – Computer Science</strong><br>Naraina Vidhyapeeth, Kanpur (2019 – 2023)</p>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-details">
+                    <div class="contact-item"><i class="fas fa-envelope"></i> ujjgupta272@gmail.com</div>
+                    <div class="contact-item"><i class="fas fa-phone-alt"></i> +91 7395093990</div>
+                    <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Gurgaon, Haryana, India</div>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/UjjawalGupta786" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/ujjawal-gupta-b142261a0" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="mailto:ujjgupta272@gmail.com"><i class="fas fa-paper-plane"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Ujjawal Gupta — DevOps Engineer | Built with <i class="fas fa-heart" style="color:#2563eb;"></i> & automation mindset</p>
+        </div>
+    </footer>
+</main>
+
+<script>
+    // Intersection Observer for fade-up animation
+    const sections = document.querySelectorAll('section');
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -20px 0px"
+    };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    
+    // initial visibility for hero and any visible sections on load
+    window.addEventListener('DOMContentLoaded', () => {
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if(rect.top < window.innerHeight - 80) {
+                section.classList.add('visible');
+            }
+        });
+        const hero = document.querySelector('#home');
+        if(hero) hero.classList.add('visible');
+        
+        // fix for avatar image fallback if needed (already inline fallback)
+        const profileImg = document.querySelector('.profile-pic');
+        if(profileImg && profileImg.naturalWidth === 0) {
+            profileImg.src = 'https://ui-avatars.com/api/?background=1e3a8a&color=fff&rounded=true&bold=true&size=120&name=Ujjawal+Gupta';
+        }
+    });
+    
+    // Smooth scroll with hash update
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if(targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                history.pushState(null, null, `#${targetId}`);
+            }
+        });
+    });
+    
+    // if URL has hash on load, scroll softly
+    if(window.location.hash) {
+        const id = window.location.hash.substring(1);
+        const target = document.getElementById(id);
+        if(target) {
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+    }
+    
+    // Dynamic year in footer
+    const footerPara = document.querySelector('footer p');
+    if(footerPara) {
+        const currentYear = new Date().getFullYear();
+        footerPara.innerHTML = footerPara.innerHTML.replace('2025', currentYear);
+    }
+    
+    // small additional: make external links safer
+    document.querySelectorAll('.social-links a').forEach(link => {
+        if(link.getAttribute('href') && !link.getAttribute('href').startsWith('mailto')) {
+            link.setAttribute('rel', 'noopener noreferrer');
+            link.setAttribute('target', '_blank');
+        }
+    });
+</script>
+</body>
+</html>
