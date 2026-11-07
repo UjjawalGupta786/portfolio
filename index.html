@@ -674,11 +674,6 @@
         const hero = document.querySelector('#home');
         if(hero) hero.classList.add('visible');
         
-        // fix for avatar image fallback if needed (already inline fallback)
-        const profileImg = document.querySelector('.profile-pic');
-        if(profileImg && profileImg.naturalWidth === 0) {
-            profileImg.src = 'https://ui-avatars.com/api/?background=1e3a8a&color=fff&rounded=true&bold=true&size=120&name=Ujjawal+Gupta';
-        }
     });
     
     // Smooth scroll with hash update
